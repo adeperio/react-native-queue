@@ -1,5 +1,11 @@
 <img src="/docs/logo.png" alt="React Native Queue"/>
 
+Forked from the original React Native Queue which has been abandoned. 
+
+``` 
+yarn add @adeperio/react-native-queue
+```
+
 # React Native Queue
 #### Simple. Powerful. Persistent.
 
