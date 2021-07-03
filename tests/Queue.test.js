@@ -808,14 +808,14 @@ describe('Models/Queue', function() {
 
     const jobs = await queue.getJobs(true);
 
-    jobs[0].should.have.properties({
+    expect(jobs[0]).toMatchObject({
       name: jobName,
       payload: JSON.stringify(payload),
       data: JSON.stringify({attempts: jobOptions.attempts}),
       priority: jobOptions.priority,
       active: false,
       timeout: jobOptions.timeout
-    });
+    }) 
 
   });
 
