@@ -223,7 +223,9 @@ export class Queue {
         resolve(jobs)
       })
     } else {
-      return await this.realm.objects('Job');
+      return new Promise(resolve => {
+        resolve(this.realm.objects('Job'))
+      })
     }
 
   }

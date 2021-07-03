@@ -933,12 +933,12 @@ describe('Models/Queue', function() {
 
     const jobs = await queue.getJobs(true);
 
-    jobs.length.should.equal(4);
-
+    expect(jobs.length).toBe(4)
+    
     const mvccJobs = await queue.getJobs(); // Test non-blocking read version as well.
-
-    mvccJobs.length.should.equal(4);
-
+    
+    expect(mvccJobs.length).toBe(4)
+    
   });
 
   it('#getConcurrentJobs(queueLifespanRemaining) should work as expected for queues started with a lifespan.', async () => {
