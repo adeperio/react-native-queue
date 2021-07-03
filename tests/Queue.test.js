@@ -232,6 +232,7 @@ describe('Models/Queue', function() {
       throw new Error('ERROR: Queue with lifespan picked up bad jobs it did not have enough remaining lifespan to execute: ' + JSON.stringify(badJobs));
     }
 
+    
     // Queue should have stopped.
     queue.status.should.equal('inactive');
 
