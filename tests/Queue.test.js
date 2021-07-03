@@ -1397,7 +1397,7 @@ describe('Models/Queue', function() {
     failedJobData.failedAttempts.should.equal(3);
 
     // Ensure job marked as failed.
-    failedJob.failed.should.be.a.Date();
+    expect(Object.prototype.toString.call(failedJob.failed) === '[object Date]').toBe(true);
 
     // Next getConcurrentJobs() should now finally return 'job-name' type jobs.
     const fourthConcurrentJobs = await queue.getConcurrentJobs();
