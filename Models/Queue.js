@@ -204,7 +204,7 @@ export class Queue {
    *
    * Get a collection of all the jobs in the queue.
    *
-   * @param sync {boolean} - This should be true if you want to guarantee job data is fresh. Otherwise you could receive job data that is not up to date if a write transaction is occuring concurrently.
+   * @param sync {boolean} - This should be true if you want to guarantee job data is fresh. 
    * @return {promise} - Promise that resolves to a collection of all the jobs in the queue.
    */
   async getJobs(sync = false) {
@@ -212,14 +212,16 @@ export class Queue {
     if (sync) {
 
       let jobs = null;
+
+      //if a write transaction is occuring concurrently, this guarantees data is fresh
+      //write is a synchronous operation, so jobs will resolve synchronously here
       this.realm.write(() => {
-
         jobs = this.realm.objects('Job');
-
       });
-
-      return jobs;
-
+      
+      return new Promise(resolve => {
+        resolve(jobs)
+      })
     } else {
       return await this.realm.objects('Job');
     }
